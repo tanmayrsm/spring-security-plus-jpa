@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarExample01"
+                aria-controls="navbarExample01"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+        
+        <!-- form -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <!-- success msg -->
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">You've registered</div>
+                    </div>
+                </div>
+
+                <h1>Regi form</h1>
+                <form th:action="@{/registration}" method="post" th:object="${user}">   
+                    <!-- user comes from @ModelAttribute decalred in controller -->
+                    <div class="form-group">
+                        <label class="control-label" for="firstName">F name</label>
+                        <input id="fName" class="form-control" th:field="*{firstName}" required autofocus>
+                        <!-- * attribute must be same as declared in userRegDTO -->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="lastName">L name</label>
+                        <input id="lName" class="form-control" th:field="*{lastName}" required autofocus>
+                        <!-- * attribute must be same as declared in userRegDTO -->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-control" th:field="*{email}" required autofocus>
+                        <!-- * attribute must be same as declared in userRegDTO -->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password">pwd</label>
+                        <input id="pwd" type="password" class="form-control" th:field="*{password}" required autofocus>
+                        <!-- * attribute must be same as declared in userRegDTO -->
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Register</button>
+                        <span>Already registered ? <a href="/" th:href="@{/login}">Login here</a></span>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
